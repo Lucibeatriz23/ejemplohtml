@@ -41,35 +41,41 @@ const saludo = () => {
 
 
     if (nombre.length == 0) {
-        alert('Escribe el nombre');
+        // alert('Escribe el nombre');
+        error('Escribe el nombre')
         return false;
 
     }
 
     if (aPaterno.length == 0) {
-        alert('escribe el  apellido paterno');
+        //alert('escribe el  apellido paterno');
+        error('Escribe su apelliudo paterno')
         return false;
 
     }
     if (aMaterno.length == 0) {
-        alert('Escribe el apellido materno');
+        //alert('Escribe el apellido materno');
+        error('Escribe su apellido materno')
         return false;
 
     }
 
     if (email.length == 0) {
-        alert('escribe tu email');
+        // alert('escribe tu email');
+        error('Escribe tu email')
         return false;
 
     }
     if (telefono.length == 0) {
-        alert('Escribe tu telefono');
+        //alert('Escribe tu telefono');
+        error('Escribe tu telefono')
         return false;
 
     }
 
     if (municipio == 0) {
-        alert('Seleccione un municipio');
+        //alert('Seleccione un municipio');
+        error('Seleccione un municipio')
         return false;
 
     }
@@ -87,11 +93,26 @@ const saludo = () => {
     }
 
     if (seleccionados == 0) {
-        alert('selecciona un lenguaje de programacion');
+        // alert('selecciona un lenguaje de programacion');
+        error('selecciona un lenguaje de programacion')
         return false;
     }
+    let url = 'files/guardarRegistro.php';
+    let send = {
+        nombre,
+        aPaterno,
+        aMaterno,
+        email,
+        telefono,
+        municipio,
+        colonia
 
-    document.getElementById('mostrarMensaje').style.display = "block";
+    };
+
+
+    ajaxJSON(url, 'guardados', send);
+
+    // document.getElementById('mostrarMensaje').style.display = "block";
 
     // alert('gracias por llenar el formulario');
 }
@@ -102,4 +123,20 @@ const mostrarColonia = (idMunicipio) => {
     } else {
         document.getElementById('mostrarColonia').style.display = "none";
     }
+}
+
+const ok = mensaje => {
+    Swal.fire(
+        'Mensaje del sistema',
+        mensaje,
+        'success'
+    )
+}
+
+const error = mensaje => {
+    Swal.fire(
+        'Mensaje del sistema',
+        mensaje,
+        'error'
+    )
 }
